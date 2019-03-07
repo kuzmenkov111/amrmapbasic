@@ -2,8 +2,9 @@ FROM ubuntu:bionic
 
 RUN useradd docker \
 	&& mkdir /home/docker \
-	&& chown docker:docker /home/docker \
-	&& addgroup docker staff
+	&& chown -R docker:docker /home/docker \
+	&& addgroup docker staff \
+	&& addgroup docker shiny
 
 ## Install some useful tools and dependencies for MRO
 RUN apt update \
