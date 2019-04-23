@@ -77,7 +77,7 @@ RUN apt install -y software-properties-common
 RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
 RUN apt update
 RUN apt install -y libudunits2-dev libgdal-dev libgeos-dev 
-RUN sudo apt install openjdk-11-jdk \
+RUN sudo apt install -y openjdk-11-jdk \
 && java -version
 #RUN sudo apt-add-repository -y ppa:webupd8team/java \
 #&& apt update && echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections && apt-get install -y oracle-java8-installer \
