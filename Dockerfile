@@ -102,18 +102,22 @@ RUN R -e "install.packages('binom', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('car', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('fmsb', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('igraph', repos='https://cran.r-project.org/')" \
-&& sudo su - -c "R -e \"install.packages('miniUI', repos='https://cran.r-project.org/');options(unzip = 'internal'); remotes::install_github('daattali/shinyjs')\"" \
+&& R -e "install.packages(с('miniUI', 'shinyjs'), repos='https://cran.r-project.org/')" \
+#&& sudo su - -c "R -e \"install.packages('miniUI', repos='https://cran.r-project.org/');options(unzip = 'internal'); remotes::install_github('daattali/shinyjs')\"" \
 #RUN R -e "options(unzip = 'internal'); devtools::install_github('daattali/shinyjs')" \
 && R -e "install.packages('scales', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('crosstalk', repos='https://cran.r-project.org/')" \
-&& sudo su - -c "R -e \"options(unzip = 'internal'); remotes::install_github('rstudio/DT')\"" \
+&& R -e "install.packages('DT', repos='https://cran.r-project.org/')" \
+#&& sudo su - -c "R -e \"options(unzip = 'internal'); remotes::install_github('rstudio/DT')\"" \
 #RUN R -e "devtools::install_github('rstudio/DT')" \
-&& sudo su - -c "R -e \"install.packages(c('raster', 'sp', 'viridis'), repos='https://cran.r-project.org/');options(unzip = 'internal'); remotes::install_github('rstudio/leaflet')\"" \
-&& sudo su - -c "R -e \"options(unzip = 'internal'); remotes::install_github('bhaskarvk/leaflet.extras')\"" \
+&& R -e "install.packages(c('raster', 'sp', 'viridis', 'leaflet', 'leaflet.extras'), repos='https://cran.r-project.org/')" \
+#&& sudo su - -c "R -e \"install.packages(c('raster', 'sp', 'viridis', 'leaflet'), repos='https://cran.r-project.org/');options(unzip = 'internal'); remotes::install_github('rstudio/leaflet')\"" \
+#&& sudo su - -c "R -e \"options(unzip = 'internal'); remotes::install_github('bhaskarvk/leaflet.extras')\"" \
 && R -e "install.packages('ggrepel', repos='https://cran.r-project.org/')" \
 #RUN R -e "install.packages('leaflet', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('visNetwork', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('purrr', repos='https://cran.r-project.org/')" \
-&& sudo su - -c "R -e \"options(unzip = 'internal'); remotes::install_github('kuzmenkov111/highcharter')\"" 
+&& sudo su - -c "R -e \"remotes::install_git('https://github.com/kuzmenkov111/highcharter')\""
+#&& sudo su - -c "R -e \"options(unzip = 'internal'); remotes::install_github('kuzmenkov111/highcharter')\"" 
 
 
