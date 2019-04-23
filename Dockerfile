@@ -78,7 +78,6 @@ RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
 RUN apt update
 RUN apt install -y libudunits2-dev libgdal-dev libgeos-dev 
 
-
 RUN sudo apt-add-repository -y ppa:webupd8team/java \
 && apt update && echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections && apt-get install -y oracle-java8-installer \
 && R -e "Sys.setenv(JAVA_HOME = '/usr/lib/jvm/java-8-oracle/jre')"
