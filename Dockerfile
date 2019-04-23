@@ -87,6 +87,7 @@ RUN sudo java -version
 # basic shiny functionality
 RUN R -e "install.packages('binom', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('dplyr', repos='https://cran.r-project.org/')" \
+&& R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.r-project.org/')" \
 && R -e "install.packages('ggplot2', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('reshape', repos='https://cran.r-project.org/')" \
 && R -e "install.packages('curl', repos='https://cran.r-project.org/')" \
