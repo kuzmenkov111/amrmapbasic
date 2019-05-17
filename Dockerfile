@@ -34,10 +34,7 @@ RUN apt update && apt install -y \
     libssl1.0.0 \
     libxml2-dev \
     gdebi \
-    libssl-dev
-
-# system library dependency for the euler app
-RUN apt update && apt install -y \
+    libssl-dev\
     libmpfr-dev \
     gfortran \
     aptitude \
@@ -49,36 +46,34 @@ RUN apt update && apt install -y \
     libbz2-dev \
     liblzma-dev \
     libnlopt-dev \
-    build-essential
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
     
 WORKDIR /home/docker
-RUN sudo wget https://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb
-RUN sudo dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb 
+RUN sudo wget https://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0_1.2.54-1ubuntu1_amd64.deb \
+&& dpkg -i libpng12-0_1.2.54-1ubuntu1_amd64.deb \
 # Download, valiate, and unpack and install Micrisift R open
-RUN wget https://www.dropbox.com/s/uz4e4d0frk21cvn/microsoft-r-open-3.5.1.tar.gz?dl=1 -O microsoft-r-open-3.5.1.tar.gz \
+&& wget https://www.dropbox.com/s/uz4e4d0frk21cvn/microsoft-r-open-3.5.1.tar.gz?dl=1 -O microsoft-r-open-3.5.1.tar.gz \
 && echo "9791AAFB94844544930A1D896F2BF1404205DBF2EC059C51AE75EBB3A31B3792 microsoft-r-open-3.5.1.tar.gz" > checksum.txt \
 	&& sha256sum -c --strict checksum.txt \
 	&& tar -xf microsoft-r-open-3.5.1.tar.gz \
 	&& cd /home/docker/microsoft-r-open \
 	&& ./install.sh -a -u \
-	&& ls logs && cat logs/*
-
-
-# Clean up
-WORKDIR /home/docker
-RUN rm microsoft-r-open-3.5.1.tar.gz \
+	&& ls logs && cat logs/* \
+	&& cd /home/docker \
+	&& rm microsoft-r-open-3.5.1.tar.gz \
 	&& rm checksum.txt \
-&& rm -r microsoft-r-open
+	&& rm -r microsoft-r-open
 
 
 #COPY Makeconf /usr/lib64/microsoft-r/3.3/lib64/R/etc/Makeconf
 
-RUN apt install -y software-properties-common
-RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-RUN apt update
-RUN apt install -y libudunits2-dev libgdal-dev libgeos-dev 
-RUN sudo apt install -y openjdk-11-jdk \
-&& java -version
+RUN apt install -y software-properties-common \
+&& add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable \
+&& apt update && apt install -y \
+&& libudunits2-dev libgdal-dev libgeos-dev openjdk-11-jdk \
+&& java -version \
+&& rm -rf /var/lib/apt/lists/*
 #RUN sudo apt-add-repository -y ppa:webupd8team/java \
 #&& apt update && echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections && apt-get install -y oracle-java8-installer \
 #&& R -e "Sys.setenv(JAVA_HOME = '/usr/lib/jvm/java-8-oracle/jre')"
