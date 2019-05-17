@@ -71,7 +71,9 @@ RUN sudo wget https://mirrors.kernel.org/ubuntu/pool/main/libp/libpng/libpng12-0
 RUN apt install -y software-properties-common \
 && add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable \
 && apt update && apt install -y \
-&& libudunits2-dev libgdal-dev libgeos-dev openjdk-11-jdk \
+libudunits2-dev \
+libgdal-dev \
+libgeos-dev openjdk-11-jdk \
 && java -version \
 && rm -rf /var/lib/apt/lists/*
 #RUN sudo apt-add-repository -y ppa:webupd8team/java \
